@@ -1,5 +1,10 @@
 import { Response } from 'express'
 
+export function onBadRequest(res: Response, error: Error) {
+	console.error(error)
+	res.status(400).json({ error, message: error.message })
+}
+
 export function onError(res: Response, error: Error) {
 	console.error(error)
 	res.status(500).json({ error })
