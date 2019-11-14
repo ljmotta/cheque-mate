@@ -1,5 +1,7 @@
 import express, { Express, json } from 'express'
 import morgan from 'morgan'
+import { translator } from '../controller/translator'
+import { onNotFound } from '../utils/handler'
 
 export function setupServer(): Express {
 	const app = express()
@@ -7,7 +9,8 @@ export function setupServer(): Express {
 	app.use(morgan(':method :url :status :response-time ms [:date[iso]]'))
 	app.use(json())
 
-	app.use((req, res, next) => res.status(404).json({ data: 'NotFound '}))
+	app.use('/:input', translator)
+	app.use((req, res, next) => onNotFound(res))
 
 	return app
 }
