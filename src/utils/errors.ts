@@ -7,7 +7,7 @@ export function invalidInputType(input: any) {
 }
 
 export function invalidInputValue(input: number) {
-	const error = new Error(`The input should be between [-${getMinInput()},${getMaxInput()}]. Your input: ${input}`)
+	const error = new Error(`Input out of bounds. Should be between [-${getMinInput()},${getMaxInput()}]. Your input: ${input}`)
 	error.name = 'InvalidInputValue'
 	return error
 }
