@@ -13,7 +13,7 @@ type AlgorismType = 'units' | 'tens' | 'hundreds'
  * @param word Representative word for respective digit
  * @return Word with or without auxiliary word
  */
-function getAuxiliarWord(
+export function getAuxiliarWord(
 	digitPosition: number,
 	word: string,
 ): string {
@@ -40,7 +40,7 @@ function getAuxiliarWord(
  *  - true and new digit position
  *  - false and current digit position
  */
-function getTensOrHundreds(
+export function getTensOrHundreds(
 	digits: string[],
 	currentDictionary: Map<string, string>,
 	digitPosition: number,
@@ -112,6 +112,6 @@ export function positive(input: string) {
  * @return Negative input in words
  */
 export function negative(input: string) {
-	const positiveInput = input.slice(1, input.length)
+	const positiveInput = Math.abs(parseInt(input, 10)).toString()
 	return `${minus} ${positive(positiveInput)}`
 }
