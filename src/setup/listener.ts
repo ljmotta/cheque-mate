@@ -7,7 +7,7 @@ import { validator } from '../utils/validator'
 export function setupServer(): Express {
 	const app = express()
 
-	app.use(morgan(':method :url :status :response-time ms [:date[iso]]'))
+	if (process.env.NODE_ENV !== 'test') app.use(morgan(':method :url :status :response-time ms [:date[iso]]'))
 	app.use(json())
 
 	app.use('/:input', validator, converter)
