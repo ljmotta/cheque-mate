@@ -10,3 +10,15 @@ export function invalidInputValue(input: number) {
 	error.name = 'InvalidInputValue'
 	return error
 }
+
+export function missingAuxiliary(auxilaryWords: string[]) {
+	const error = new Error(`Missing auxiliary word for input. Auxiliary words: ${auxilaryWords}`)
+	error.name = 'MissingAuxiliaryWord'
+	return error
+}
+
+export function missingDictionaryForAlgarism() {
+	const error = new Error(`Something wrong. Missing dictionary for algarism.`)
+	error.name = 'MissingDictionaryForAlgarism'
+	return error
+}

@@ -1,7 +1,7 @@
 export const minus = 'menos'
 
-export const auxiliar = new Map<number, string>([
-	[1, 'mil'],
+export const auxiliary = new Map<number, string>([
+	[2, 'mil'],
 ])
 
 const units = new Map<string, string>([
@@ -47,7 +47,6 @@ const tens = new Map<string, string>([
 ])
 
 const hundreds = new Map<string, string>([
-	['100', 'cem'],
 	['1', 'cento'],
 	['2', 'duzentos'],
 	['3', 'trezentos'],
@@ -57,6 +56,7 @@ const hundreds = new Map<string, string>([
 	['7', 'setecentos'],
 	['8', 'oitocentos'],
 	['9', 'novecentos'],
+	['100', 'cem'],
 	['200', 'duzentos'],
 	['300', 'trezentos'],
 	['400', 'quatrocentos'],
@@ -67,14 +67,12 @@ const hundreds = new Map<string, string>([
 	['900', 'novecentos'],
 ])
 
-const thousands = new Map(units)
-thousands.set('1', auxiliar.get(1) as string)
-thousands.delete('0')
-
-export const dictionary = new Map<number, Map<string, string>>([
-	[1, units],
-	[2, tens],
-	[3, hundreds],
-	[4, thousands],
-	[5, tens],
-])
+export function getDictionary(inputSize: number): Map<number, Map<string, string>> {
+	const dictionary = new Map<number, Map<string, string>>()
+	for (let i = 1; i <= inputSize; i++) {
+		if (i % 3 === 0) dictionary.set(i, hundreds)
+		if (i % 3 === 1) dictionary.set(i, units)
+		if (i % 3 === 2) dictionary.set(i, tens)
+	}
+	return dictionary
+}
