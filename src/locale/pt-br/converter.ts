@@ -1,5 +1,5 @@
 import { missingAuxiliary, missingDictionaryForDigit } from '../../utils/errors'
-import { auxiliary, getDictionary, minus } from './numbers'
+import { auxiliary, getDictionary, minus } from './dictionary'
 
 type Tens = 'tens'
 type Hundread = 'hundreds'

@@ -4,7 +4,7 @@ export const auxiliary = new Map<number, string>([
 	[2, 'mil'],
 ])
 
-const units = new Map<string, string>([
+export const units = new Map<string, string>([
 	['0', 'zero'],
 	['1', 'um'],
 	['2', 'dois'],
