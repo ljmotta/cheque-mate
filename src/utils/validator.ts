@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { MAX_INPUT, MIN_INPUT } from './constants'
+import { getMaxInput, getMinInput } from './constants'
 import { invalidInputType, invalidInputValue } from './errors'
 import { onBadRequest } from './handler'
 
@@ -24,10 +24,10 @@ export function validator(req: Request, res: Response, next: NextFunction) {
 	if (!Number.isInteger(numberInput)) {
 		return onBadRequest(res, invalidInputType(input))
 	}
-	if (numberInput > MAX_INPUT) {
+	if (numberInput > getMaxInput()) {
 		return onBadRequest(res, invalidInputValue(numberInput))
 	}
-	if (numberInput < MIN_INPUT) {
+	if (numberInput < getMinInput()) {
 		return onBadRequest(res, invalidInputValue(numberInput))
 	}
 	next()

@@ -1,4 +1,4 @@
-import { MAX_INPUT, MIN_INPUT } from '../../../src/utils/constants'
+import { getMaxInput, getMinInput } from '../../../src/utils/constants'
 import { expect, request } from '../../utils/common'
 
 describe('\n VALIDATOR GET /:input', () => {
@@ -26,8 +26,8 @@ describe('\n VALIDATOR GET /:input', () => {
 
 		describe('--> InvalidInputValue', () => {
 			const tests = [
-				{ input: MAX_INPUT + 1, error: { name: 'InvalidInputValue' } },
-				{ input: MIN_INPUT - 1, error: { name: 'InvalidInputValue' } },
+				{ input: getMaxInput() + 1, error: { name: 'InvalidInputValue' } },
+				{ input: getMinInput() - 1, error: { name: 'InvalidInputValue' } },
 			]
 
 			tests.forEach(test => {

@@ -1,5 +1,7 @@
+import * as dotenv from 'dotenv'
 import { setupServer } from './setup/listener'
 
+dotenv.config()
 const app = setupServer()
 const server = app.listen(3000, () => console.info('Server listening on port 3000'))
 

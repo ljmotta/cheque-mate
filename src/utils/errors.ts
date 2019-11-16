@@ -1,3 +1,4 @@
+import { getMaxInput, getMinInput } from './constants'
 
 export function invalidInputType(input: any) {
 	const error = new Error(`The input should be a number. Your input: ${input}`)
@@ -6,7 +7,7 @@ export function invalidInputType(input: any) {
 }
 
 export function invalidInputValue(input: number) {
-	const error = new Error(`The input should be between [-99999,99999]. Your input: ${input}`)
+	const error = new Error(`The input should be between [-${getMinInput()},${getMaxInput()}]. Your input: ${input}`)
 	error.name = 'InvalidInputValue'
 	return error
 }
