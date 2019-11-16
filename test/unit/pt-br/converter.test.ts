@@ -1,4 +1,4 @@
-import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, TENS } from '../../../src/locale/pt-br/converter'
+import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, negative, TENS } from '../../../src/locale/pt-br/converter'
 import { hundreds, tens } from '../../../src/locale/pt-br/numbers'
 import { expect } from '../../utils/common'
 
@@ -159,6 +159,22 @@ describe('CONVERTER - pt-br', () => {
 					expect(data).to.deep.equal(test.expect.response)
 					expect(test.args.words).to.deep.equal(test.expect.words)
 				})
+			})
+		})
+	})
+
+	describe('negative', () => {
+		const shouldTests = [
+			{ input: '-1', expect: 'menos um' },
+			{ input: '-100', expect: 'menos cem' },
+			{ input: '-99999', expect: 'menos noventa e nove mil e novecentos e noventa e nove' },
+		]
+
+		shouldTests.forEach(test => {
+			it(`should get negative word for input ${test.input}`, () => {
+				const data = negative(test.input)
+
+				expect(data).to.deep.equal(test.expect)
 			})
 		})
 	})
