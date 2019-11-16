@@ -3,6 +3,7 @@ import { setupServer } from './setup/listener'
 const app = setupServer()
 const server = app.listen(3000, () => console.info('Server listening on port 3000'))
 
+// Properly shutdown. Node doesn't handle SIGINT or SIGTERM by default.
 function shutdown() {
 	if (server !== undefined) {
 		server.close((err: any) => {
@@ -12,7 +13,6 @@ function shutdown() {
 			}
 			process.exit()
 		})
-
 	}
 }
 

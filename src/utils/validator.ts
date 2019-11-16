@@ -3,6 +3,12 @@ import { MAX_INPUT, MIN_INPUT } from './constants'
 import { invalidInputType, invalidInputValue } from './errors'
 import { onBadRequest } from './handler'
 
+/**
+ * Validate input param
+ * @param req
+ * @param res
+ * @param next
+ */
 export function validator(req: Request, res: Response, next: NextFunction) {
 	const { input } = req.params
 	const numberInput = parseInt(input, 10)

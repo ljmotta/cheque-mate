@@ -17,8 +17,8 @@ export function missingAuxiliary(auxilaryWords: string[]) {
 	return error
 }
 
-export function missingDictionaryForAlgarism() {
-	const error = new Error(`Something wrong. Missing dictionary for algarism.`)
-	error.name = 'MissingDictionaryForAlgarism'
+export function missingDictionaryForDigit() {
+	const error = new Error(`Something wrong. Missing dictionary for digit.`)
+	error.name = 'MissingDictionaryForDigit'
 	return error
 }
