@@ -2,7 +2,7 @@ import { Response } from 'express'
 
 export function onBadRequest(res: Response, error: Error) {
 	if (process.env.NODE_ENV !== 'test') console.error(error)
-	res.status(400).json({ error, message: error.message })
+	res.status(400).json({ error: error.name, message: error.message })
 }
 
 export function onError(res: Response, error: Error) {
