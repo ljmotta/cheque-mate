@@ -19,7 +19,7 @@ export function missingAuxiliary(auxilaryWords: string[]) {
 }
 
 export function missingDictionaryForDigit() {
-	const error = new Error(`Something wrong. Missing dictionary for digit.`)
+	const error = new Error(`Something wrong on 'getDictionary'. Missing dictionary for digit.`)
 	error.name = 'MissingDictionaryForDigit'
 	return error
 }
