@@ -1,5 +1,5 @@
 import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, negative, positive, TENS } from '../../../src/locale/pt-br/converter'
-import { hundreds, tens } from '../../../src/locale/pt-br/numbers'
+import { hundreds, tens } from '../../../src/locale/pt-br/dictionary'
 import { expect } from '../../utils/common'
 
 describe('CONVERTER - pt-br', () => {
