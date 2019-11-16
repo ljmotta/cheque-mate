@@ -17,7 +17,7 @@ const units = new Map<string, string>([
 	['9', 'nove'],
 ])
 
-const tens = new Map<string, string>([
+export const tens = new Map<string, string>([
 	['2', 'vinte'],
 	['3', 'trinta'],
 	['4', 'quarenta'],
@@ -46,7 +46,7 @@ const tens = new Map<string, string>([
 	['90', 'noventa'],
 ])
 
-const hundreds = new Map<string, string>([
+export const hundreds = new Map<string, string>([
 	['1', 'cento'],
 	['2', 'duzentos'],
 	['3', 'trezentos'],

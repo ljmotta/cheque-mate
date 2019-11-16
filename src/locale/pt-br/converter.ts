@@ -1,11 +1,14 @@
 import { missingAuxiliary, missingDictionaryForDigit } from '../../utils/errors'
 import { auxiliary, getDictionary, minus } from './numbers'
 
-const TENS = 'tens'
-const HUNDREADS = 'hundreds'
+type Tens = 'tens'
+type Hundread = 'hundreds'
+type AlgorismType = Tens | Hundread
+
+export const TENS: Tens = 'tens'
+export const HUNDREADS: Hundread = 'hundreds'
 const ONE_THOUSAND = 'um mil'
 const THOUSAND = 'mil'
-type AlgorismType = 'units' | 'tens' | 'hundreds'
 
 /**
  * Check necessity of a auxiliary word before actual word.
