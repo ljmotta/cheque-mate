@@ -61,7 +61,7 @@ describe('\n ROUTE GET /:input', () => {
 			]
 
 			tests.forEach(test => {
-				it('should convert a positive number in words', async () => {
+				it(`should convert a positive number (${test.input}) to words`, async () => {
 					const response = await request.get(`/${test.input}`)
 
 					expect(response.status).to.equal(200)
@@ -77,7 +77,7 @@ describe('\n ROUTE GET /:input', () => {
 			]
 
 			tests.forEach(test => {
-				it('should convert a negative number in words', async () => {
+				it(`should convert a negative number (${test.input}) to words`, async () => {
 					const response = await request.get(`/${test.input}`)
 
 					expect(response.status).to.equal(200)

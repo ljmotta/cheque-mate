@@ -15,7 +15,7 @@ describe('\n VALIDATOR GET /:input', () => {
 			]
 
 			tests.forEach(test => {
-				it('should response a bad request and throw a InvalidInputType', async () => {
+				it(`should response a BadRequest for input ${test.input} and throw a InvalidInputType`, async () => {
 					const response = await request.get(`/${test.input}`)
 
 					expect(response.status).to.equal(400)
@@ -31,7 +31,7 @@ describe('\n VALIDATOR GET /:input', () => {
 			]
 
 			tests.forEach(test => {
-				it('should response a bad request and throw a InvalidInputValue', async () => {
+				it('should response a BadRequest and throw a InvalidInputValue', async () => {
 					const response = await request.get(`/${test.input}`)
 
 					expect(response.status).to.equal(400)
