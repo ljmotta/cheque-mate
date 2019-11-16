@@ -1,12 +1,12 @@
 import { Response } from 'express'
 
 export function onBadRequest(res: Response, error: Error) {
-	console.error(error)
+	if (process.env.NODE_ENV !== 'test') console.error(error)
 	res.status(400).json({ error, message: error.message })
 }
 
 export function onError(res: Response, error: Error) {
-	console.error(error)
+	if (process.env.NODE_ENV !== 'test') console.error(error)
 	res.status(500).json({ error })
 }
 
@@ -15,6 +15,6 @@ export function onNotFound(res: Response) {
 }
 
 export function onSuccess(res: Response, extenso: string) {
-	console.info({ extenso })
+	if (process.env.NODE_ENV !== 'test') console.info({ extenso })
 	res.status(200).json({ extenso })
 }
