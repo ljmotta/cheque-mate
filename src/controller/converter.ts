@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { negative, positive } from '../locale/converter.pt-br'
+import { negative, positive } from '../locale/pt-br/converter'
 import { onError, onSuccess } from '../utils/handler'
 
 /**

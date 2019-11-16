@@ -1,5 +1,5 @@
-import { missingAuxiliary, missingDictionaryForDigit } from '../utils/errors'
-import { auxiliary, getDictionary, minus } from './numbers.pt-br'
+import { missingAuxiliary, missingDictionaryForDigit } from '../../utils/errors'
+import { auxiliary, getDictionary, minus } from './numbers'
 
 const TENS = 'tens'
 const HUNDREADS = 'hundreds'

@@ -4,7 +4,7 @@ import { invalidInputType, invalidInputValue } from './errors'
 import { onBadRequest } from './handler'
 
 /**
- * Validate input param
+ * Validate the 'input' param
  * @param req
  * @param res
  * @param next

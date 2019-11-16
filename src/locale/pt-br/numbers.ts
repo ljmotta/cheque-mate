@@ -67,6 +67,13 @@ const hundreds = new Map<string, string>([
 	['900', 'novecentos'],
 ])
 
+/**
+ * Dinamic generate a dictionary from input size
+ * @param inputSize
+ * @return Map:
+ *  - key: Position of digit on input
+ *  - value: Possible words for that position
+ */
 export function getDictionary(inputSize: number): Map<number, Map<string, string>> {
 	const dictionary = new Map<number, Map<string, string>>()
 	for (let i = 1; i <= inputSize; i++) {
