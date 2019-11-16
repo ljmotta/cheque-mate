@@ -1,6 +1,6 @@
 import { expect, request } from '../../utils/common'
 
-describe('ROUTE GET /:input', () => {
+describe('\n ROUTE GET /:input', () => {
 	describe('200', () => {
 		describe('--> Positive input', () => {
 			const tests = [
@@ -82,27 +82,6 @@ describe('ROUTE GET /:input', () => {
 
 					expect(response.status).to.equal(200)
 					expect(response.body).to.deep.equal(test.expect)
-				})
-			})
-		})
-	})
-
-	describe('400', () => {
-		describe('InvalidInputType', () => {
-			const tests = [
-				{ input: '-', error: { name: 'InvalidInputType' } },
-				{ input: 'a', error: { name: 'InvalidInputType' } },
-				{ input: '1-1', error: { name: 'InvalidInputType' } },
-				{ input: '1-a', error: { name: 'InvalidInputType' } },
-				{ input: '1a', error: { name: 'InvalidInputType' } },
-			]
-
-			tests.forEach(test => {
-				it('should response a bad request and throw a InvalidInputType', async () => {
-					const response = await request.get(`/${test.input}`)
-
-					expect(response.status).to.equal(400)
-					expect(response.body.error).to.deep.equal(test.error)
 				})
 			})
 		})
