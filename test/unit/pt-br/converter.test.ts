@@ -1,4 +1,5 @@
-import { getAuxiliaryWord } from '../../../src/locale/pt-br/converter'
+import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, TENS } from '../../../src/locale/pt-br/converter'
+import { hundreds, tens } from '../../../src/locale/pt-br/numbers'
 import { expect } from '../../utils/common'
 
 describe('CONVERTER - pt-br', () => {
@@ -33,6 +34,132 @@ describe('CONVERTER - pt-br', () => {
 
 		it('shouldn\'t get auxiliary word due to missing \'milhao\'', () => {
 			expect(() => getAuxiliaryWord(7, '')).to.throw('Missing auxiliary word for input. Auxiliary words: mil')
+		})
+	})
+
+	describe('getTensOrHundreds', () => {
+		describe('--> Tens', () => {
+			const shouldTests = [
+				{
+					args: { digits: ['1', '0'], digitPosition: 2, currentDictionary: tens, words: [], type: TENS },
+					expect: { response: [true, 1], words: ['dez'] },
+				},
+				{
+					args: { digits: ['1', '1'], digitPosition: 2, currentDictionary: tens, words: [], type: TENS },
+					expect: { response: [true, 1], words: ['onze'] },
+				},
+				{
+					args: { digits: ['1', '2', '0'], digitPosition: 2, currentDictionary: tens, words: [], type: TENS },
+					expect: { response: [true, 1], words: ['vinte'] },
+				},
+			]
+
+			shouldTests.forEach(test => {
+				it(`should get ten word for ${test.args.digits.join('')}`, () => {
+					const data = getTensOrHundreds(
+						test.args.digits,
+						test.args.currentDictionary,
+						test.args.digitPosition,
+						test.args.words,
+						test.args.type)
+
+					expect(data).to.deep.equal(test.expect.response)
+					expect(test.args.words).to.deep.equal(test.expect.words)
+				})
+			})
+
+			const shouldntTests = [
+				{
+					args: { digits: ['2', '1'], digitPosition: 2, currentDictionary: tens, words: [], type: TENS },
+					expect: { response: [false, 2], words: [] },
+				},
+				{
+					args: { digits: ['9', '9'], digitPosition: 2, currentDictionary: tens, words: [], type: TENS },
+					expect: { response: [false, 2], words: [] },
+				},
+				{
+					args: { digits: ['2', '3', '0'], digitPosition: 3, currentDictionary: tens, words: [], type: TENS },
+					expect: { response: [false, 3], words: [] },
+				},
+			]
+
+			shouldntTests.forEach(test => {
+				it(`shouldn't get ten word for ${test.args.digits.join('')} and position ${test.args.digitPosition}`, () => {
+					const data = getTensOrHundreds(
+						test.args.digits,
+						test.args.currentDictionary,
+						test.args.digitPosition,
+						test.args.words,
+						test.args.type)
+
+					expect(data).to.deep.equal(test.expect.response)
+					expect(test.args.words).to.deep.equal(test.expect.words)
+				})
+			})
+		})
+
+		describe('--> Hundread', () => {
+			const shouldTests = [
+				{
+					args: { digits: ['1', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [true, 1], words: ['cem'] },
+				},
+				{
+					args: { digits: ['2', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [true, 1], words: ['duzentos'] },
+				},
+				{
+					args: { digits: ['2', '1', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [true, 1], words: ['cem'] },
+				},
+			]
+
+			shouldTests.forEach(test => {
+				it(`should get hundread word for ${test.args.digits.join('')}`, () => {
+					const data = getTensOrHundreds(
+						test.args.digits,
+						test.args.currentDictionary,
+						test.args.digitPosition,
+						test.args.words,
+						test.args.type)
+
+					expect(data).to.deep.equal(test.expect.response)
+					expect(test.args.words).to.deep.equal(test.expect.words)
+				})
+			})
+
+			const shouldntTests = [
+				{
+					args: { digits: ['2', '1', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [false, 3], words: [] },
+				},
+				{
+					args: { digits: ['9', '9', '9'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [false, 3], words: [] },
+				},
+				{
+					args: { digits: ['3', '0'], digitPosition: 2, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [false, 2], words: [] },
+				},
+				{
+					args: { digits: ['3', '1', '0', '0'], digitPosition: 4, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					expect: { response: [false, 4], words: [] },
+				},
+			]
+
+			shouldntTests.forEach(test => {
+				it(`shouldn't get hundread word for ${test.args.digits.join('')} and position ${test.args.digitPosition}`, () => {
+					const data = getTensOrHundreds(
+						test.args.digits,
+						test.args.currentDictionary,
+						test.args.digitPosition,
+						test.args.words,
+						test.args.type)
+
+					expect(data).to.deep.equal(test.expect.response)
+					expect(test.args.words).to.deep.equal(test.expect.words)
+				})
+			})
 		})
 	})
 })
