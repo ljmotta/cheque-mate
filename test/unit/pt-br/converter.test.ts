@@ -1,4 +1,4 @@
-import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, negative, TENS } from '../../../src/locale/pt-br/converter'
+import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, negative, positive, TENS } from '../../../src/locale/pt-br/converter'
 import { hundreds, tens } from '../../../src/locale/pt-br/numbers'
 import { expect } from '../../utils/common'
 
@@ -176,6 +176,27 @@ describe('CONVERTER - pt-br', () => {
 
 				expect(data).to.deep.equal(test.expect)
 			})
+		})
+	})
+
+	describe('positive', () => {
+		const shouldTests = [
+			{ input: '1', expect: 'um' },
+			{ input: '100', expect: 'cem' },
+			{ input: '99999', expect: 'noventa e nove mil e novecentos e noventa e nove' },
+			{ input: '999999', expect: 'novecentos e noventa e nove mil e novecentos e noventa e nove' },
+		]
+
+		shouldTests.forEach(test => {
+			it(`should get positive word for input ${test.input}`, () => {
+				const data = positive(test.input)
+
+				expect(data).to.deep.equal(test.expect)
+			})
+		})
+
+		it(`shouldn't get positive word for input bigger than (default: 999999)`, () => {
+			expect(() => positive('9999999')).to.throw('Missing auxiliary word for input. Auxiliary words: mil')
 		})
 	})
 })
