@@ -77,7 +77,6 @@
 		"encoding": true,
 		"eofline": true,
 		"no-irregular-whitespace": true,
-		"no-unexpected-multiline": true,
 		"no-trailing-whitespace": true,
 		"no-consecutive-blank-lines": true,
 		"no-duplicate-imports": true,
