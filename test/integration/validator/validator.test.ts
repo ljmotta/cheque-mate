@@ -5,13 +5,13 @@ describe('\n VALIDATOR GET /:input', () => {
 	describe('400', () => {
 		describe('--> InvalidInputType', () => {
 			const tests = [
-				{ input: '-', error: { name: 'InvalidInputType' } },
-				{ input: 'a', error: { name: 'InvalidInputType' } },
-				{ input: '1-1', error: { name: 'InvalidInputType' } },
-				{ input: '1-a', error: { name: 'InvalidInputType' } },
-				{ input: '1a', error: { name: 'InvalidInputType' } },
-				{ input: '--1', error: { name: 'InvalidInputType' } },
-				{ input: '1.1', error: { name: 'InvalidInputType' } },
+				{ input: '-', error: 'InvalidInputType' },
+				{ input: 'a', error: 'InvalidInputType' },
+				{ input: '1-1', error: 'InvalidInputType' },
+				{ input: '1-a', error: 'InvalidInputType' },
+				{ input: '1a', error: 'InvalidInputType' },
+				{ input: '--1', error: 'InvalidInputType' },
+				{ input: '1.1', error: 'InvalidInputType' },
 			]
 
 			tests.forEach(test => {
@@ -26,8 +26,8 @@ describe('\n VALIDATOR GET /:input', () => {
 
 		describe('--> InvalidInputValue', () => {
 			const tests = [
-				{ input: getMaxInput() + 1, error: { name: 'InvalidInputValue' } },
-				{ input: getMinInput() - 1, error: { name: 'InvalidInputValue' } },
+				{ input: getMaxInput() + 1, error: 'InvalidInputValue' },
+				{ input: getMinInput() - 1, error: 'InvalidInputValue' },
 			]
 
 			tests.forEach(test => {
