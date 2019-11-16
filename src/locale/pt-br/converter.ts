@@ -13,7 +13,7 @@ type AlgorismType = 'units' | 'tens' | 'hundreds'
  * @param word Representative word for respective digit
  * @return Word with or without auxiliary word
  */
-export function getAuxiliarWord(
+export function getAuxiliaryWord(
 	digitPosition: number,
 	word: string,
 ): string {
@@ -55,7 +55,7 @@ export function getTensOrHundreds(
 	const word = currentDictionary.get(numb)
 
 	if (word) {
-		words.push(getAuxiliarWord(digitPosition, word))
+		words.push(getAuxiliaryWord(digitPosition, word))
 		return [true, digitPosition - numbersToJump]
 	}
 	return [false, digitPosition]
@@ -96,7 +96,7 @@ export function positive(input: string) {
 
 		// get auxilar word for units: 1xxx, 2xxx, 3xxx, 9xxx
 		if (digits.length > 3 && (digitPosition - 1) % 3 === 0) {
-			word = getAuxiliarWord(digitPosition, word)
+			word = getAuxiliaryWord(digitPosition, word)
 		}
 
 		// handle language particularity: 'um mil' should be 'mil' if number has 4 digits
