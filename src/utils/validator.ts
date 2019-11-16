@@ -16,12 +16,12 @@ export function validator(req: Request, res: Response, next: NextFunction) {
 	const { input } = req.params
 
 	const toValidate = (input.slice(0, 1) === '-') ? input.slice(1, input.length) : input
-	if (toValidate.match(/[$-/:-?{-~!"^_`\[\]]|[a-zA-Z]/)) {
+	if (toValidate.match(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,\/]|[a-zA-Z]/)) {
 		return onBadRequest(res, invalidInputType(input))
 	}
 
-	const numberInput = parseInt(input, 10)
-	if (Number.isNaN(numberInput)) {
+	const numberInput = parseFloat(input)
+	if (!Number.isInteger(numberInput)) {
 		return onBadRequest(res, invalidInputType(input))
 	}
 	if (numberInput > MAX_INPUT) {
