@@ -1,6 +1,5 @@
 FROM node:10 as base
 LABEL author="Luiz Motta <luizjoaomotta@gmail.com>"
-EXPOSE 3000
 WORKDIR  /var/www
 COPY package.json yarn.lock ./
 RUN yarn install --production=true && yarn cache clean
