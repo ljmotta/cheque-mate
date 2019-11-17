@@ -1,22 +1,103 @@
 # Cheque-Mate
-A program that spell a number that is passed as an input on the root route. (`<url>/:input`)
+A program that write in full the number that is used as input.
 
-## About implementation
- - Done using Node.js (TypeScript) and Express.js
+## About
+ - Done using Node.js with TypeScript and Express.js.
  - Only a pt-br converter has been implemented.
- - Due to implementation, the input range can be: [-999999,999999]. By default (.env MAX and MIN input) the valid range is: [-99999,99999].
- - The range can be easily expanded, just need to add the auxiliar entries (ex in pt-br: [3, 'milhao'], [4, 'bilhao'], ...) into the `auxiliar` dictionary (`/src/locale/pt-br/dictionary.ts`) and to implement a plural handler (ex in pt-br: 'dois milh*oes*') in the converter (`/src/locale/pt-br/converter.ts`)
-*Obs*: The only reason .env was commited is because of the lack of sensitive information.
+ - Due to implementation, the input range can be: [-999999,999999]. By default the valid range is: [-99999,99999].
+ - The range can be easily expanded, just need to add the auxiliar entries (ex in pt-br: [3, 'milhao'], [4, 'bilhao'], ...) into the `auxiliar` dictionary (`/src/locale/pt-br/dictionary.ts`) and to implement a plural handler (ex in pt-br: 'dois milh**oes**') in the converter (`/src/locale/pt-br/converter.ts`)
 
 ## Usage
-### Setup
-.env parameters
- - PORT: <number> (need to change on docker run command `-p 3000:<number>` and on Dockerfile `EXPOSE <number>`)
+The application can run as standalone or on a docker container.
+
+Clone this repository:
+ `git clone https://github.com/ljmotta/cheque-mate`
+
+### Setup (optional)
+This step is only required for a change in the configurations before running as a standalone application or build a docker image locally.
+Create a .env file on the root of the project with the specific infos:
+ - PORT: <number> (need to change on docker run command `-p 3000:<number>`)
  - LOCALE: pt-br (only option)
  - MAX_INPUT: <number> (can be set to 999999 without any code modification, default: 99999)
  - MIN_INPUT: <number> (can be set to -999999 without any code modification, default: -99999)
 
+### Standalone
+Its necessary to install `yarn` as a first step.
+
+Installation website: https://yarnpkg.com/pt-BR/docs/install#debian-stable
+
+#### Instalation
+ - Install all depedencies (need for development or test propouses):
+`yarn install --production=false`
+ - Install only necessary dependencies for execution (without devDependencies):
+`yarn install --production=true`
+
+#### Running
+ - Dev (all dependencies required):
+`yarn start:dev`
+ - Debug (all dependencies required):
+`yarn start:debug`
+ - Prod (all or just the necessary dependencies):
+`yarn start:prod`
+
+### Docker
+#### Build (optional)
+`docker image build --tag=<tag> --target=<target> .`
+ - tag: name of your choice.
+ - target: `dev`, `test`, `prod`, `prod-env`.
+
+ *Obs: `prod-env` require .env file*
+
+#### Pull (optional)
+ - Dev:  `docker image pull ljmotta/cheque-mate:dev` 
+ - Test: `docker image pull ljmotta/cheque-mate:test` 
+ - Prod: `docker image pull ljmotta/cheque-mate:prod` 
+ 
+#### Running
+##### Direct
+ - Dev:
+`docker container run --rm -it -p 3000:3000 -v $(pwd)/src:/var/www/src ljmotta/cheque-mate:dev`
+ - Test:
+`docker container run --rm -it ljmotta/cheque-mate:test`
+ - Prod:
+`docker container run -d -p 3000:3000 --name=prod ljmotta/cheque-mate:prod`
+ - Prod-env (only if was builded locally):
+`docker container run -d -p 3000:3000 --name=prod-env <tag>`
+
+##### Compose (Dev or Test)
+ - Dev (flag --build necessary when dependencies are updated):
+   - Running:
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
+   - Clean Up:
+	 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml down`
+ - Test (flag --build necessary when dependencies are updated):
+   - Running:
+`docker-compose -f docker-compose.yml -f docker-compose.test.yml up`
+   - Clean Up:
+	 `docker-compose -f docker-compose.yml -f docker-compose.test.yml down`
+
+##### Swarm (Prod or Prod-env)
+ - Initialize swarm:
+
+`docker swarm init`
+
+ - Prod:
+
+`docker stack deploy -c docker-compose.yml -c docker-compose.prod.yml <stack name>`
+
+ - Prod-Env (only if was builded locally with --tag=cheque-mate:prod-env):
+
+`docker stack deploy -c docker-compose.yml -c docker-compose.prod-env.yml <stack name>`
+
+Clean Up:
+
+`docker stack rm <stack name>`
+
+`docker swarm leave`
+
 ### Examples
+Running it's possible to test the application by using `curl` or any other software that make a http request.
+
 |            Request          |                                Response                           |
 | --------------------------- | ----------------------------------------------------------------- |
 | `curl localhost:3000/0`     | `{ extenso: 'zero' }`                                             |
@@ -26,50 +107,13 @@ A program that spell a number that is passed as an input on the root route. (`<u
 | `curl localhost:3000/99999` | `{ extenso: 'noventa e nove mil e novecentos e noventa e nove' }` |
 | `curl localhost:3000/-1000` | `{ extenso: 'menos mil' }`                                        |
 
-## Instalation and Running
-The application can run on the host machine or on a docker container.
-
-### Standalone
- - Clone this repository:
- `git clone https://github.com/ljmotta/cheque-mate`
-
- - Install the dependecies (two options):
-   - Install all depedencies (need for development or test propouses):
-	`yarn install --production=false`
-   - Install only necessary depencies for execution (without devDepencies):
-	`yarn install --production=true`
-
- - Execute the program (three options):
-   - Dev (require 2.1):
-	`yarn start:dev`
-   - Debug (require 2.1):
-	`yarn start:debug`
-   - Prod (require 2.1 or 2.2):
-	`yarn start:prod`
-
-### Docker
- - Build the image or download from DockerHub:
-   - Build (3 options):
-	`docker image build --tag=<tag> --target=<target> .`
-	   - tag: name of your choice.
-	   - target: `dev`, `test` or `prod`.
-   - Download (3 options):
-	   - Dev:  `docker image pull ljmotta/cheque-mate:dev` 
-	   - Test: `docker image pull ljmotta/cheque-mate:test` 
-	   - Prod: `docker image pull ljmotta/cheque-mate:prod` 
- 
- - Run (3 options):
-   - Dev:
-	 `docker container run --rm -it -p 3000:3000 -v $(pwd)/src:/var/www/src ljmotta/cheque-mate:dev`
-   - Test:
-	 `docker container run -it ljmotta/cheque-mate:test`
-   - Prod:
-	 `docker container run -d -p 3000:3000 --name=prod ljmotta/cheque-mate:prod`
-
 ## Tests
-The tests were made using Mocha.js Chai.js and Supertest (the last one only for integration tests). 
+The tests were made using Mocha.js, Chai.js and Supertest (the last one only for integration tests). 
 
-As you probably saw on the previous section (Docker) its possible to execute the tests from a container (useful for a pipeline) or it's possible to execute using yarn, with 3 options:
+As mentioned on the previous section (Docker) its possible to execute the tests from a container (useful for a pipeline) or it's possible to execute using yarn (3 options):
  - Run all tests: `yarn test:all`
  - Run integration tests: `yarn test:integration`
  - Run unit tests: `yarn test:unit`
+
+#### Trivia
+Name given due to how cheque's need to be filled: the amount in numbers and his written form.
