@@ -9,6 +9,13 @@ A program that spell a number that is passed as an input on the root route. (`<u
 *Obs*: The only reason .env was commited is because of the lack of sensitive information.
 
 ## Usage
+### Setup
+.env parameters
+ - PORT: <number> (need to change on docker run command `-p 3000:<number>` and on Dockerfile `EXPOSE <number>`)
+ - LOCALE: pt-br (only option)
+ - MAX_INPUT: <number> (can be set to 999999 without any code modification, default: 99999)
+ - MIN_INPUT: <number> (can be set to -999999 without any code modification, default: -99999)
+
 ### Examples
 |            Request          |                                Response                           |
 | --------------------------- | ----------------------------------------------------------------- |
@@ -52,9 +59,12 @@ The application can run on the host machine or on a docker container.
 	   - Prod: `docker image pull ljmotta/cheque-mate:prod` 
  
  - Run (3 options):
-   - Dev: `docker container run --rm -it -p 3000:3000 -v $(pwd)/src:/var/www/src ljmotta/cheque-mate:dev`
-	 - Test: `docker container run -it ljmotta/cheque-mate:test`
-	 - Prod: `docker container run -d -p 3000:3000 --name=prod ljmotta/cheque-mate:prod`
+   - Dev:
+	 `docker container run --rm -it -p 3000:3000 -v $(pwd)/src:/var/www/src ljmotta/cheque-mate:dev`
+   - Test:
+	 `docker container run -it ljmotta/cheque-mate:test`
+   - Prod:
+	 `docker container run -d -p 3000:3000 --name=prod ljmotta/cheque-mate:prod`
 
 ## Tests
 The tests were made using Mocha.js Chai.js and Supertest (the last one only for integration tests). 
