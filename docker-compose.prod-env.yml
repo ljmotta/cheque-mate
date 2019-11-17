@@ -1,0 +1,7 @@
+version: '3.4'
+
+services:
+  cheque-mate:
+    image: cheque-mate:prod-env
+    ports:
+      - "3000:3000"
