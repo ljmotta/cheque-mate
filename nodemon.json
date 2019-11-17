@@ -1,5 +1,0 @@
-{
-	"watch": ["src"],
-	"exec": "node ./dist/src/index",
-	"delay": "2500"
-}

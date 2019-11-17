@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:prod": "node dist/src/index.js",
-    "start:dev": "./node_modules/.bin/concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch\" \"./node_modules/.bin/nodemon ./dist/src/index.js\"",
+    "start:dev": "./node_modules/.bin/concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch\" \"./node_modules/.bin/nodemon --delay 1000ms ./dist/src/index.js\"",
     "start:debug": "./node_modules/.bin/nodemon --inspect dist/src/index.js",
     "build": "node_modules/.bin/tsc",
     "watch": "node_modules/.bin/tsc -w",
