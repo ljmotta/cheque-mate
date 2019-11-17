@@ -3,9 +3,9 @@ export function getLanguage() {
 }
 
 export function getMaxInput() {
-	return parseInt(process.env.MAX_INPUT || '0', 10)
+	return parseInt(process.env.MAX_INPUT || '99999', 10)
 }
 
 export function getMinInput() {
-	return parseInt(process.env.MIN_INPUT || '0', 10)
+	return parseInt(process.env.MIN_INPUT || '-99999', 10)
 }
