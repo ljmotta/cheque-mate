@@ -12,6 +12,12 @@ export function invalidInputValue(input: number) {
 	return error
 }
 
+export function invalidLocale() {
+	const error = new Error(`Invalid locale. '${process.env.LOCALE}' is not supported. Choose one listed on README.md`)
+	error.name = 'InvalidLocale'
+	return error
+}
+
 export function missingAuxiliary(auxilaryWords: string[]) {
 	const error = new Error(`Missing auxiliary word for input. Auxiliary words: ${auxilaryWords}`)
 	error.name = 'MissingAuxiliaryWord'

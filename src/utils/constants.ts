@@ -1,3 +1,7 @@
+export function getLanguage() {
+	return process.env.LOCALE || 'pt-br'
+}
+
 export function getMaxInput() {
 	return parseInt(process.env.MAX_INPUT || '0', 10)
 }

@@ -1,6 +1,18 @@
 import { Request, Response } from 'express'
-import { negative, positive } from '../locale/pt-br/converter'
+import { getLanguage } from '../utils/constants'
+import { invalidLocale } from '../utils/errors'
 import { onError, onSuccess } from '../utils/handler'
+
+/**
+ * Dinamic import a module based on .env LOCALE variable
+ */
+async function importLocale() {
+	try {
+		return await import(`../locale/${getLanguage()}/converter`)
+	} catch (error) {
+		throw invalidLocale()
+	}
+}
 
 /**
  * Convert a number input into words.
@@ -8,10 +20,10 @@ import { onError, onSuccess } from '../utils/handler'
  * @param req {Request}
  * @param res {Response}
  */
-export function converter(req: Request, res: Response) {
+export async function converter(req: Request, res: Response) {
 	try {
 		const { input } = req.params
-
+		const { negative, positive } = await importLocale()
 		// Handle -0 = 0
 		const integerInput = (parseInt(input, 10) === 0) ? 0 : parseInt(input, 10)
 		const extenso = (integerInput >= 0)
