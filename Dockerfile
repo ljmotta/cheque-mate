@@ -18,7 +18,10 @@ FROM dev as test
 CMD [ "yarn", "test:all"]
 
 FROM base as prod
-COPY ./.env ./
 COPY --from=build /var/www/dist/src ./
 USER node
+CMD [ "node", "index" ]
+
+FROM prod as prod-env
+COPY ./.env ./
 CMD [ "node", "index" ]
