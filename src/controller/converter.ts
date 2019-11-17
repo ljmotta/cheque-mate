@@ -4,7 +4,7 @@ import { invalidLocale } from '../utils/errors'
 import { onError, onSuccess } from '../utils/handler'
 
 /**
- * Dinamic import a module based on .env LOCALE variable
+ * Dinamic import a module based on LOCALE env variable
  */
 async function importLocale() {
 	try {
