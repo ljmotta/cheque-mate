@@ -1,5 +1,14 @@
 export const minus = 'menos'
 
+type Tens = 'tens'
+type Hundred = 'hundreds'
+export type AlgorismType = Tens | Hundred
+
+export const TENS: Tens = 'tens'
+export const HUNDREDS: Hundred = 'hundreds'
+export const ONE_THOUSAND = 'um mil'
+export const THOUSAND = 'mil'
+
 export const auxiliary = new Map<number, string>([
 	[2, 'mil'],
 ])
@@ -39,7 +48,7 @@ export const tens = new Map<string, string>([
 	['20', 'vinte'],
 	['30', 'trinta'],
 	['40', 'quarenta'],
-	['50', 'ciquenta'],
+	['50', 'cinquenta'],
 	['60', 'sessenta'],
 	['70', 'setenta'],
 	['80', 'oitenta'],
@@ -51,7 +60,7 @@ export const hundreds = new Map<string, string>([
 	['2', 'duzentos'],
 	['3', 'trezentos'],
 	['4', 'quatrocentos'],
-	['5', 'quinhetos'],
+	['5', 'quinhentos'],
 	['6', 'seiscentos'],
 	['7', 'setecentos'],
 	['8', 'oitocentos'],
@@ -60,7 +69,7 @@ export const hundreds = new Map<string, string>([
 	['200', 'duzentos'],
 	['300', 'trezentos'],
 	['400', 'quatrocentos'],
-	['500', 'quinhetos'],
+	['500', 'quinhentos'],
 	['600', 'seiscentos'],
 	['700', 'setecentos'],
 	['800', 'oitocentos'],

@@ -31,7 +31,7 @@ describe('\n ROUTE GET /:input', () => {
 				{ input: '201', expect: { extenso: 'duzentos e um' } },
 				{ input: '301', expect: { extenso: 'trezentos e um' } },
 				{ input: '401', expect: { extenso: 'quatrocentos e um' } },
-				{ input: '501', expect: { extenso: 'quinhetos e um' } },
+				{ input: '501', expect: { extenso: 'quinhentos e um' } },
 				{ input: '601', expect: { extenso: 'seiscentos e um' } },
 				{ input: '701', expect: { extenso: 'setecentos e um' } },
 				{ input: '801', expect: { extenso: 'oitocentos e um' } },

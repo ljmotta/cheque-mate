@@ -1,5 +1,5 @@
-import { getAuxiliaryWord, getTensOrHundreds, HUNDREADS, negative, positive, TENS } from '../../../src/locale/pt-br/converter'
-import { hundreds, tens } from '../../../src/locale/pt-br/dictionary'
+import { getAuxiliaryWord, getTensOrHundreds, negative, positive } from '../../../src/locale/pt-br/converter'
+import { hundreds, HUNDREDS, tens, TENS } from '../../../src/locale/pt-br/dictionary'
 import { expect } from '../../utils/common'
 
 describe('CONVERTER - pt-br', () => {
@@ -101,15 +101,15 @@ describe('CONVERTER - pt-br', () => {
 		describe('--> Hundread', () => {
 			const shouldTests = [
 				{
-					args: { digits: ['1', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['1', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [true, 1], words: ['cem'] },
 				},
 				{
-					args: { digits: ['2', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['2', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [true, 1], words: ['duzentos'] },
 				},
 				{
-					args: { digits: ['2', '1', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['2', '1', '0', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [true, 1], words: ['cem'] },
 				},
 			]
@@ -130,19 +130,19 @@ describe('CONVERTER - pt-br', () => {
 
 			const shouldntTests = [
 				{
-					args: { digits: ['2', '1', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['2', '1', '0'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [false, 3], words: [] },
 				},
 				{
-					args: { digits: ['9', '9', '9'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['9', '9', '9'], digitPosition: 3, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [false, 3], words: [] },
 				},
 				{
-					args: { digits: ['3', '0'], digitPosition: 2, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['3', '0'], digitPosition: 2, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [false, 2], words: [] },
 				},
 				{
-					args: { digits: ['3', '1', '0', '0'], digitPosition: 4, currentDictionary: hundreds, words: [], type: HUNDREADS },
+					args: { digits: ['3', '1', '0', '0'], digitPosition: 4, currentDictionary: hundreds, words: [], type: HUNDREDS },
 					expect: { response: [false, 4], words: [] },
 				},
 			]

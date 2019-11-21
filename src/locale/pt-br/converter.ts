@@ -1,14 +1,14 @@
 import { missingAuxiliary, missingDictionaryForDigit } from '../../utils/errors'
-import { auxiliary, getDictionary, minus } from './dictionary'
-
-type Tens = 'tens'
-type Hundread = 'hundreds'
-type AlgorismType = Tens | Hundread
-
-export const TENS: Tens = 'tens'
-export const HUNDREADS: Hundread = 'hundreds'
-const ONE_THOUSAND = 'um mil'
-const THOUSAND = 'mil'
+import {
+	AlgorismType,
+	auxiliary,
+	getDictionary,
+	HUNDREDS,
+	minus,
+	ONE_THOUSAND,
+	TENS,
+	THOUSAND,
+} from './dictionary'
 
 /**
  * Check necessity of a auxiliary word before actual word.
@@ -90,7 +90,7 @@ export function positive(input: string) {
 
 		// get hundreads: 100, 200, 300, ..., 900
 		if (digitPosition !== 0 && digitPosition % 3 === 0) {
-			([cont, digitPosition] = getTensOrHundreds(digits, currentDictionary, digitPosition, words, HUNDREADS))
+			([cont, digitPosition] = getTensOrHundreds(digits, currentDictionary, digitPosition, words, HUNDREDS))
 			if (cont) continue
 		}
 
