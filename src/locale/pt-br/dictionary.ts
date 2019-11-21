@@ -30,7 +30,7 @@ export const tens = new Map<string, string>([
 	['2', 'vinte'],
 	['3', 'trinta'],
 	['4', 'quarenta'],
-	['5', 'ciquenta'],
+	['5', 'cinquenta'],
 	['6', 'sessenta'],
 	['7', 'setenta'],
 	['8', 'oitenta'],
