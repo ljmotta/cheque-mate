@@ -1,5 +1,11 @@
 import { getMaxInput, getMinInput } from './constants'
 
+export function invalidQuery(queries: string[], supportedQueries?: string[]) {
+	const error = new Error(`This route does not support this query. Your query: ${queries}. Supported: ${supportedQueries}`)
+	error.name = 'InvalidQuery'
+	return error
+}
+
 export function invalidInputType(input: any) {
 	const error = new Error(`The input should be a number. Your input: ${input}`)
 	error.name = 'InvalidInputType'

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { getMaxInput, getMinInput } from './constants'
-import { invalidInputType, invalidInputValue } from './errors'
+import { invalidInputType, invalidInputValue, invalidQuery } from './errors'
 import { onBadRequest } from './handler'
 
 /**
@@ -14,6 +14,9 @@ import { onBadRequest } from './handler'
  */
 export function validator(req: Request, res: Response, next: NextFunction) {
 	const { input } = req.params
+	const { query } = req
+
+	if (Object.entries(query).length !== 0) return onBadRequest(res, invalidQuery(Object.keys(query)))
 
 	const toValidate = (input.slice(0, 1) === '-') ? input.slice(1, input.length) : input
 	if (toValidate.match(/[-!$%^&*()_+|~=`{}\[\]:";'<>?,\/]|[a-zA-Z]/)) {

@@ -39,5 +39,21 @@ describe('\n VALIDATOR GET /:input', () => {
 				})
 			})
 		})
+
+		describe('--> InvalidQuery', () => {
+			const tests = [
+				{ input: '1?a=1', error: 'InvalidQuery' },
+				{ input: '1?1=1', error: 'InvalidQuery' },
+			]
+
+			tests.forEach(test => {
+				it('should response a BadRequest and throw a InvalidQuery', async () => {
+					const response = await request.get(`/${test.input}`)
+
+					expect(response.status).to.equal(400)
+					expect(response.body.error).to.deep.equal(test.error)
+				})
+			})
+		})
 	})
 })
