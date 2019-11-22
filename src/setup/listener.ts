@@ -11,6 +11,7 @@ export function setupServer(): Express {
 	app.use(json())
 
 	app.use('/', express.static('./public/view', { index: 'index.html' }))
+	app.use('/:input/:something', (req, res, next) => onNotFound(res))
 	app.use('/:input', validator, converter)
 	app.use((req, res, next) => onNotFound(res))
 

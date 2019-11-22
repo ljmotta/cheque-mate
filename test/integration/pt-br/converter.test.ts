@@ -80,8 +80,6 @@ describe('\n ROUTE GET /:input', () => {
 				{ input: '21121', expect: { extenso: 'vinte e um mil e cento e vinte e um' } },
 				{ input: '99999', expect: { extenso: 'noventa e nove mil e novecentos e noventa e nove' } },
 				{ input: '00001', expect: { extenso: 'um' } },
-				{ input: '1/1', expect: { extenso: 'um' } },
-				{ input: '1/a', expect: { extenso: 'um' } },
 			]
 
 			tests.forEach(test => {

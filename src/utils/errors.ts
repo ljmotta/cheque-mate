@@ -1,6 +1,6 @@
 import { getMaxInput, getMinInput } from './constants'
 
-export function invalidQuery(queries: string[], supportedQueries?: string[]) {
+export function invalidQuery(queries: string[], supportedQueries = ['']) {
 	const error = new Error(`This route does not support this query. Your query: ${queries}. Supported: ${supportedQueries}`)
 	error.name = 'InvalidQuery'
 	return error
