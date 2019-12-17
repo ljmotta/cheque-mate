@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  cheque-mate:
+    build:
+      context: .
+      target: dev
+    image: ljmotta/cheque-mate:dev
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MAX_INPUT=99999
+      - MIN_INPUT=-99999
+    volumes:
+      - type: bind
+        source: ./src
+        target: /var/www/src

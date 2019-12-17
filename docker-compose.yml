@@ -1,0 +1,5 @@
+version: '3.4'
+
+services:
+  cheque-mate: 
+    image: ljmotta/cheque-mate:prod

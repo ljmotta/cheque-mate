@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  cheque-mate:
+    build:
+      context: .
+      target: test
+    image: ljmotta/cheque-mate:test
